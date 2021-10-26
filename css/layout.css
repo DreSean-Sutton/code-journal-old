@@ -1,15 +1,20 @@
+
 img {
   width: 100%;
   margin-bottom: 1rem;
 }
 
-input {
-  margin-bottom: 1.5rem;
+input,
+textarea {
+  margin: 1rem 0 2rem;
+  border-radius: 0.2rem;
+  border: 2px solid rgb(190, 190, 190);
+  resize: none;
 }
 
-/* label {
-
-} */
+.submit-button-layout {
+  text-align: end;
+}
 
 .input-layout {
   width: 100%;
@@ -17,10 +22,11 @@ input {
   padding: 0.5rem;
 }
 
-.notes-form-padding {
+.notes-form-layout {
   display: block;
-  padding: 5rem 0;
   width: 100%;
+  border-radius: 0;
+  border: 1px solid rgba(182, 182, 182, 1);
 }
 
 .hidden {

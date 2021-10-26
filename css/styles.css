@@ -1,3 +1,32 @@
-/* img {
-  padding-bottom: 1rem;
-} */
+header {
+  font-family: 'lora', serif;
+  background-color: rgb(240, 240, 240);
+}
+
+main {
+  font-family: 'roboto', sans-serif;
+  background-color: rgb(240, 240, 240);
+}
+
+label {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.header-color {
+  color: white;
+  background-color: rgb(86, 43, 129);
+  font-size: 1.5rem;
+}
+
+.header-font {
+  font-size: 3.5rem;
+}
+
+.submit-button-style {
+  color: white;
+  background-color: rgb(86, 43, 129);
+  font-size: 1.8rem;
+  padding: 0.5rem 1.3rem;
+  border-radius: 0.4rem;
+}

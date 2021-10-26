@@ -18,13 +18,12 @@ function photoInput(event) {
 function submitForm(event) {
   var $formValue =
   {
-    // [
     title: $title.value,
     photoURL: $photoURL.value,
-    notes: $notes.value
-    // ],
-    // nextEntryId: 1
+    notes: $notes.value,
+    nextEntryId: 1
   };
-  // nextEntryId++
+  $formValue.nextEntryId++;
+  // console.log('is FormValue.nextEntryId incrementing?:', $formValue.nextEntryId);
   return $formValue;
 }

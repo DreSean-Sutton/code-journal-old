@@ -1,3 +1,28 @@
+img {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+input {
+  margin-bottom: 1.5rem;
+}
+
+/* label {
+
+} */
+
+.input-layout {
+  width: 100%;
+  display: block;
+  padding: 0.5rem;
+}
+
+.notes-form-padding {
+  display: block;
+  padding: 5rem 0;
+  width: 100%;
+}
+
 .hidden {
   display: none !important;
 }

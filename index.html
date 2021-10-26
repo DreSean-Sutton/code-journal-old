@@ -16,11 +16,42 @@
 </head>
 <body>
   <header>
+    <div class="container">
+      <div class="row">
+        <div class="column-full">
+          <h3>Code Journal</h3>
+        </div>
+        <div class="column-full">
+          <h1>New Entry</h1>
+        </div>
+      </div>
+    </div>
   </header>
   <main>
     <div data-view="entry-form">
-      <form>
-
+      <form id="entry-form">
+        <div class="container">
+          <div class="row">
+            <div class="column-full column-half">
+              <img src="images/placeholder-image-square.jpg">
+            </div>
+            <div class="column-full column-half">
+              <label for="title-form">Title</label>
+              <input id="title-form" class="input-layout" type="text">
+              <label for="photo-form">Photo URL</label>
+              <input id="photo-form" class="input-layout" type="url">
+            </div>
+          </div>
+          <div class="row">
+            <div class="column-full">
+              <label for="notes-form">Notes</label>
+              <div>
+                <input type="text" class="notes-form-padding">
+              </div>
+            </div>
+          </div>
+          <input type="submit">
+        </div>
       </form>
     </div>
   </main>

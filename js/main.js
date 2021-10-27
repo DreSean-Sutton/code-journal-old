@@ -16,8 +16,7 @@ function photoInput(event) {
 
 function submitForm(event) {
   event.preventDefault();
-  var $formValues =
-  {
+  var $formValues = {
     title: $title.value,
     photoURL: $photoURL.value,
     notes: $notes.value,

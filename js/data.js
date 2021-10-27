@@ -12,7 +12,8 @@ var previousDataJSON = localStorage.getItem('javascript-local-storage');
 if (previousDataJSON !== null) {
   data = (JSON.parse(previousDataJSON));
 }
-var $savedFormData = window.addEventListener('beforeunload', YourPersonalStorage);
+
+window.addEventListener('beforeunload', YourPersonalStorage);
 
 function YourPersonalStorage(event) {
   var dataJSON = JSON.stringify(data);

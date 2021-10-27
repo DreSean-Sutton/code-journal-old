@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* exported data */
 
 var data = {
@@ -11,7 +12,6 @@ var previousDataJSON = localStorage.getItem('javascript-local-storage');
 if (previousDataJSON !== null) {
   data = (JSON.parse(previousDataJSON));
 }
-// eslint-disable-next-line no-unused-vars
 var $savedFormData = window.addEventListener('beforeunload', YourPersonalStorage);
 
 function YourPersonalStorage(event) {

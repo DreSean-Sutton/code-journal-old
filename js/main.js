@@ -23,7 +23,6 @@ function submitForm(event) {
     notes: $notes.value,
     nextEntryId: data.nextEntryId + 1
   };
-  // $formValues.nextEntryId++;
   $image.src = 'images/placeholder-image-square.jpg';
   $form.reset();
   data.nextEntryId++;

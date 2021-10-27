@@ -1,11 +1,10 @@
-header {
-  font-family: 'lora', serif;
+body {
   background-color: rgb(240, 240, 240);
+  font-family: 'roboto', sans-serif;
 }
 
-main {
-  font-family: 'roboto', sans-serif;
-  background-color: rgb(240, 240, 240);
+header {
+  font-family: 'lora', serif;
 }
 
 label {

@@ -1,3 +1,34 @@
+
+img {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+input,
+textarea {
+  margin: 1rem 0 2rem;
+  border-radius: 0.2rem;
+  border: 2px solid rgb(190, 190, 190);
+  resize: none;
+}
+
+.submit-button-layout {
+  text-align: end;
+}
+
+.input-layout {
+  width: 100%;
+  display: block;
+  padding: 0.5rem;
+}
+
+.notes-form-layout {
+  display: block;
+  width: 100%;
+  border-radius: 0;
+  border: 1px solid rgba(182, 182, 182);
+}
+
 .hidden {
   display: none !important;
 }

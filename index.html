@@ -35,30 +35,28 @@
     </div>
     <div data-view="entry-form">
       <form id="entry-form">
-        <div class="container">
-          <div class="row">
-            <div class="column-full column-half">
-              <img src="images/placeholder-image-square.jpg">
-            </div>
-            <div class="column-full column-half">
-              <label for="title-form">Title</label>
-              <input id="title-form" class="input-layout" type="text" required>
-              <label for="photo-form">Photo URL</label>
-              <input id="photo-form" src="" class="input-layout" type="url" required>
+        <div class="row">
+          <div class="column-full column-half">
+            <img src="images/placeholder-image-square.jpg">
+          </div>
+          <div class="column-full column-half">
+            <label for="title-form">Title</label>
+            <input id="title-form" class="input-layout" type="text" required>
+            <label for="photo-form">Photo URL</label>
+            <input id="photo-form" src="" class="input-layout" type="url" required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="column-full">
+            <label for="notes-form">Notes</label>
+            <div>
+              <textarea id="notes-form" class="notes-form-layout" rows="15" autocapitalize="sentences" required></textarea>
             </div>
           </div>
-          <div class="row">
-            <div class="column-full">
-              <label for="notes-form">Notes</label>
-              <div>
-                <textarea id="notes-form" class="notes-form-layout" rows="15" autocapitalize="sentences" required></textarea>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="column-full submit-button-layout">
-              <input id="submit-button" class="submit-button-style" value="Save" type="submit" required>
-            </div>
+        </div>
+        <div class="row">
+          <div class="column-full submit-button-layout">
+            <input id="submit-button" class="submit-button-style" value="Save" type="submit" required>
           </div>
         </div>
       </form>

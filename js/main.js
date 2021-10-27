@@ -16,14 +16,14 @@ function photoInput(event) {
 }
 
 function submitForm(event) {
-  var $formValue =
+  var $formValues =
   {
     title: $title.value,
     photoURL: $photoURL.value,
     notes: $notes.value,
     nextEntryId: 1
   };
-  $formValue.nextEntryId++;
-  // console.log('is FormValue.nextEntryId incrementing?:', $formValue.nextEntryId);
-  return $formValue;
+  $formValues.nextEntryId++;
+  data.entries.push($formValues);
+  data.nextEntryId++;
 }

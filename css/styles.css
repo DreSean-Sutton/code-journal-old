@@ -5,6 +5,9 @@ body {
 
 header {
   font-family: 'lora', serif;
+  background-color: rgb(86, 43, 129);
+  color: white;
+  font-size: 1.5rem;
 }
 
 label {
@@ -12,13 +15,7 @@ label {
   font-weight: bold;
 }
 
-.header-color {
-  color: white;
-  background-color: rgb(86, 43, 129);
-  font-size: 1.5rem;
-}
-
-.header-font {
+h1 {
   font-size: 3.5rem;
 }
 

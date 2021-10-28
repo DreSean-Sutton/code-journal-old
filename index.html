@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Code Journal</title>
   <link rel="icon" href="images/favicon.ico">
-  <link
-    rel="stylesheet"
-    crossorigin="anonymous"
+  <link rel="stylesheet" crossorigin="anonymous"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
     integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==">
   <link href="https://fonts.googleapis.com/css?family=Lora|Roboto:400,700" rel="stylesheet">
@@ -15,6 +14,7 @@
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
   <header>
     <div class="container">
@@ -28,48 +28,43 @@
   <main>
     <div id="form-container" class="container">
       <div data-view="entry-form">
-      <div data-view="entries">
-        <ul>Entries
-          <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, voluptas?</li>
-          <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam, laudantium.</li>
-          <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius, distinctio?</li>
-        </ul>
-      </div>
         <div class="row">
           <div class="column-full">
             <h1>New Entry</h1>
           </div>
         </div>
-      </div>
-      <form id="entry-form">
-        <div class="row">
-          <div class="column-full column-half">
-            <img src="images/placeholder-image-square.jpg">
-          </div>
-          <div class="column-full column-half">
-            <label for="title-form">Title</label>
-            <input id="title-form" class="input-layout" type="text" required>
-            <label for="photo-form">Photo URL</label>
-            <input id="photo-form" src="" class="input-layout" type="url" required>
-          </div>
-        </div>
-        <div class="row">
-          <div class="column-full">
-            <label for="notes-form">Notes</label>
-            <div>
-              <textarea id="notes-form" class="notes-form-layout" rows="15" autocapitalize="sentences" required></textarea>
+        <form id="entry-form">
+          <div class="row">
+            <div class="column-full column-half">
+              <img src="images/placeholder-image-square.jpg">
+            </div>
+            <div class="column-full column-half">
+              <label for="title-form">Title</label>
+              <input id="title-form" class="input-layout" type="text" required>
+              <label for="photo-form">Photo URL</label>
+              <input id="photo-form" src="" class="input-layout" type="url" required>
             </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="column-full submit-button-layout">
-            <input id="submit-button" class="submit-button-style" value="Save" type="submit" required>
+          <div class="row">
+            <div class="column-full">
+              <label for="notes-form">Notes</label>
+              <div>
+                <textarea id="notes-form" class="notes-form-layout" rows="15" autocapitalize="sentences"
+                  required></textarea>
+              </div>
+            </div>
           </div>
-        </div>
-      </form>
+          <div class="row">
+            <div class="column-full submit-button-layout">
+              <input id="submit-button" class="submit-button-style" value="Save" type="submit" required>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
 </body>
+
 </html>

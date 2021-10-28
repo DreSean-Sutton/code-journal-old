@@ -32,23 +32,40 @@ function submitForm(event) {
 document.addEventListener('DOMContentLoaded', createJournalEntries);
 
 function createJournalEntries(event) {
+  // debugger;
+  var $DOMHeaderRow = document.createElement('div');
+  var $DOMHeaderColumn = document.createElement('div');
+  var $DOMEntriesRow = document.createElement('div');
+  var $DOMEntriesColumn = document.createElement('div');
   var $dataViewEntries = document.createElement('div');
+  var $viewEntriesH1 = document.createElement('h1');
   var $entriesListHeader = document.createElement('ul');
   var $entriesPhotoURL = document.createElement('li');
   var $entriesTitle = document.createElement('li');
   var $entriesNotes = document.createElement('li');
 
-  $entriesListHeader.textContent = 'Entry';
-  $entriesPhotoURL.src = event.photoURL.value;
-  $entriesTitle.textContent = event.title.value;
-  $entriesNotes.textContent = event.notes.value;
-
+  $DOMHeaderRow.setAttribute('class', 'row');
+  $DOMHeaderColumn.setAttribute('class', 'column-full');
+  $DOMEntriesRow.setAttribute('class', 'row');
+  $DOMEntriesColumn.setAttribute('class', 'column-full');
   $dataViewEntries.setAttribute('data-view', 'entries');
-  $dataViewEntries.appendChild('#form-container');
-  $entriesListHeader.appendChild($dataViewEntries);
-  $entriesPhotoURL.appendChild($entriesListHeader);
-  $entriesTitle.appendChild($entriesListHeader);
-  $entriesNotes.appendChild($entriesListHeader);
+
+  $formContainer.appendChild($DOMHeaderRow);
+  $DOMHeaderRow.appendChild($DOMHeaderColumn);
+  $DOMHeaderColumn.appendChild($viewEntriesH1);
+  $formContainer.appendChild($DOMEntriesRow);
+  $DOMEntriesRow.appendChild($DOMEntriesColumn);
+  $DOMEntriesColumn.appendChild($dataViewEntries);
+  $formContainer.appendChild($dataViewEntries);
+  $dataViewEntries.appendChild($entriesListHeader);
+  $entriesListHeader.appendChild($entriesPhotoURL);
+  $entriesListHeader.appendChild($entriesTitle);
+  $entriesListHeader.appendChild($entriesNotes);
+
+  $viewEntriesH1.textContent = 'Entries';
+  // $entriesPhotoURL.src = $photoURL.value;
+  $entriesTitle.textContent = $title.value;
+  $entriesNotes.textContent = $notes.value;
   return $dataViewEntries;
 }
 

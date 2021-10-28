@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* global data */
 /* exported data */
 
@@ -26,4 +27,25 @@ function submitForm(event) {
   $form.reset();
   data.nextEntryId++;
   data.entries.push($formValues);
+}
+
+function createJournalEntries(event) {
+  var $dataViewEntries = document.createElement('div');
+  var $entriesListHeader = document.createElement('ul');
+  var $entriesPhotoURL = document.createElement('li');
+  var $entriesTitle = document.createElement('li');
+  var $entriesNotes = document.createElement('li');
+
+  $entriesListHeader.textContent = 'Entries';
+  $entriesPhotoURL.src = $photoURL.src;
+  $entriesTitle.textContent = $title.textContent;
+  $entriesNotes.textContent = $notes.textContent;
+
+  $dataViewEntries.setAttribute('data-view', 'entries');
+  $dataViewEntries.appendChild('#form-container');
+  $entriesListHeader.appendChild($dataViewEntries);
+  $entriesPhotoURL.appendChild($entriesListHeader);
+  $entriesTitle.appendChild($entriesListHeader);
+  $entriesNotes.appendChild($entriesListHeader);
+
 }

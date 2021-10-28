@@ -29,6 +29,8 @@ function submitForm(event) {
   data.entries.push($formValues);
 }
 
+document.addEventListener('DOMContentLoaded', createJournalEntries);
+
 function createJournalEntries(event) {
   var $dataViewEntries = document.createElement('div');
   var $entriesListHeader = document.createElement('ul');
@@ -36,10 +38,10 @@ function createJournalEntries(event) {
   var $entriesTitle = document.createElement('li');
   var $entriesNotes = document.createElement('li');
 
-  $entriesListHeader.textContent = 'Entries';
-  $entriesPhotoURL.src = $photoURL.src;
-  $entriesTitle.textContent = $title.textContent;
-  $entriesNotes.textContent = $notes.textContent;
+  $entriesListHeader.textContent = 'Entry';
+  $entriesPhotoURL.src = event.photoURL.value;
+  $entriesTitle.textContent = event.title.value;
+  $entriesNotes.textContent = event.notes.value;
 
   $dataViewEntries.setAttribute('data-view', 'entries');
   $dataViewEntries.appendChild('#form-container');
@@ -47,5 +49,10 @@ function createJournalEntries(event) {
   $entriesPhotoURL.appendChild($entriesListHeader);
   $entriesTitle.appendChild($entriesListHeader);
   $entriesNotes.appendChild($entriesListHeader);
+  return $dataViewEntries;
+}
 
+var $formContainer = document.querySelector('#form-container');
+for (var i = 0; i < data.length; i++) {
+  $formContainer.appendChild(createJournalEntries(data[i]));
 }

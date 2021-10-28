@@ -6,13 +6,6 @@ var $title = document.querySelector('#title-form');
 var $photoURL = document.querySelector('#photo-form');
 var $notes = document.querySelector('#notes-form');
 var $form = document.querySelector('form');
-var $formContainer = document.querySelector('#form-container');
-
-var $listDiv = document.createElement('div');
-var $listHeader = document.createElement('ul');
-
-$listDiv.setAttribute('data-view', 'entries');
-$listDiv.appendChild($listHeader);
 
 $photoURL.addEventListener('input', photoInput);
 $form.addEventListener('submit', submitForm);
@@ -34,5 +27,3 @@ function submitForm(event) {
   data.nextEntryId++;
   data.entries.push($formValues);
 }
-
-$formContainer.appendChild($listHeader);

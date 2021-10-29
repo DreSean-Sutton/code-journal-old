@@ -29,15 +29,16 @@ function submitForm(event) {
   data.entries.push($formValues);
 }
 
-document.addEventListener('DOMContentLoaded', createJournalEntries);
+window.addEventListener('DOMContentLoaded', createJournalEntries);
 
 function createJournalEntries(event) {
   // debugger;
+  var $dataViewEntries = document.querySelector('#entries');
+
   var $DOMHeaderRow = document.createElement('div');
   var $DOMHeaderColumn = document.createElement('div');
   var $DOMEntriesRow = document.createElement('div');
   var $DOMEntriesColumn = document.createElement('div');
-  var $dataViewEntries = document.createElement('div');
   var $viewEntriesH1 = document.createElement('h1');
   var $entriesListHeader = document.createElement('ul');
   var $entriesPhotoURL = document.createElement('li');
@@ -48,7 +49,6 @@ function createJournalEntries(event) {
   $DOMHeaderColumn.setAttribute('class', 'column-full');
   $DOMEntriesRow.setAttribute('class', 'row');
   $DOMEntriesColumn.setAttribute('class', 'column-full');
-  $dataViewEntries.setAttribute('data-view', 'entries');
 
   $formContainer.appendChild($DOMHeaderRow);
   $DOMHeaderRow.appendChild($DOMHeaderColumn);
@@ -63,10 +63,10 @@ function createJournalEntries(event) {
   $entriesListHeader.appendChild($entriesNotes);
 
   $viewEntriesH1.textContent = 'Entries';
-  // $entriesPhotoURL.src = $photoURL.value;
-  $entriesTitle.textContent = $title.value;
-  $entriesNotes.textContent = $notes.value;
-  return $DOMHeaderRow;
+  $entriesPhotoURL.src = data.entries.photoURL;
+  $entriesTitle.textContent = data.entries.title;
+  $entriesNotes.textContent = data.entries.notes;
+  return $dataViewEntries;
 }
 
 var $formContainer = document.querySelector('#form-container');

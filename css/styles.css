@@ -7,7 +7,8 @@ header {
   font-family: 'lora', serif;
   background-color: rgb(86, 43, 129);
   color: white;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 label {

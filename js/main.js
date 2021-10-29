@@ -66,7 +66,7 @@ function createJournalEntries(event) {
   // $entriesPhotoURL.src = $photoURL.value;
   $entriesTitle.textContent = $title.value;
   $entriesNotes.textContent = $notes.value;
-  return $dataViewEntries;
+  return $DOMHeaderRow;
 }
 
 var $formContainer = document.querySelector('#form-container');

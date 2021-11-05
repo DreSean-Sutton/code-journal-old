@@ -1,3 +1,7 @@
+.hidden {
+  display: none;
+}
+
 body {
   background-color: rgb(240, 240, 240);
   font-family: 'roboto', sans-serif;
@@ -16,20 +20,11 @@ label {
   font-weight: bold;
 }
 
-h1,
-ul {
+h1 {
   font-size: 3.5rem;
 }
 
-ul {
-  font-weight: 600;
-  padding-left: 0;
-}
-
 /* POINTLESS VALUE BELOW */
-li {
-  font-size: 2rem;
-}
 
 .submit-button-style {
   color: white;

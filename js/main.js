@@ -1,12 +1,17 @@
+/* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
 /* global data */
 /* exported data */
 
+var $formContainer = document.querySelector('#form-container');
 var $image = document.querySelector('img');
 var $title = document.querySelector('#title-form');
 var $photoURL = document.querySelector('#photo-form');
 var $notes = document.querySelector('#notes-form');
 var $form = document.querySelector('form');
+var $dataEntryForm = document.querySelector('#data-entry-form');
+var $dataViewEntries = document.querySelector('#entries');
+var $headerTitle = document.querySelector('#header-title');
 
 $photoURL.addEventListener('input', photoInput);
 $form.addEventListener('submit', submitForm);
@@ -16,6 +21,7 @@ function photoInput(event) {
 }
 
 function submitForm(event) {
+  // debugger;
   event.preventDefault();
   var $formValues = {
     title: $title.value,
@@ -27,49 +33,49 @@ function submitForm(event) {
   $form.reset();
   data.nextEntryId++;
   data.entries.push($formValues);
+  // return data;
 }
 
-window.addEventListener('DOMContentLoaded', createJournalEntries);
+window.addEventListener('DOMContentLoaded', renderEntries);
 
-function createJournalEntries(event) {
+function renderEntries(event) {
   // debugger;
-  var $dataViewEntries = document.querySelector('#entries');
-
-  var $DOMHeaderRow = document.createElement('div');
-  var $DOMHeaderColumn = document.createElement('div');
+  console.log('data:', data);
   var $DOMEntriesRow = document.createElement('div');
   var $DOMEntriesColumn = document.createElement('div');
-  var $viewEntriesH1 = document.createElement('h1');
-  var $entriesListHeader = document.createElement('ul');
-  var $entriesPhotoURL = document.createElement('li');
-  var $entriesTitle = document.createElement('li');
-  var $entriesNotes = document.createElement('li');
+  var $entriesTitle = document.createElement('h2');
+  var $entriesPhotoURL = document.createElement('img');
+  var $entriesNotes = document.createElement('p');
 
-  $DOMHeaderRow.setAttribute('class', 'row');
-  $DOMHeaderColumn.setAttribute('class', 'column-full');
   $DOMEntriesRow.setAttribute('class', 'row');
-  $DOMEntriesColumn.setAttribute('class', 'column-full');
+  $DOMEntriesColumn.setAttribute('class', 'column-half column-full');
 
-  $formContainer.appendChild($DOMHeaderRow);
-  $DOMHeaderRow.appendChild($DOMHeaderColumn);
-  $DOMHeaderColumn.appendChild($viewEntriesH1);
-  $formContainer.appendChild($DOMEntriesRow);
+  $dataViewEntries.prepend($DOMEntriesRow);
   $DOMEntriesRow.appendChild($DOMEntriesColumn);
-  $DOMEntriesColumn.appendChild($dataViewEntries);
-  $formContainer.appendChild($dataViewEntries);
-  $dataViewEntries.appendChild($entriesListHeader);
-  $entriesListHeader.appendChild($entriesPhotoURL);
-  $entriesListHeader.appendChild($entriesTitle);
-  $entriesListHeader.appendChild($entriesNotes);
+  $DOMEntriesColumn.appendChild($entriesPhotoURL);
+  $DOMEntriesColumn.appendChild($entriesTitle);
+  $DOMEntriesColumn.appendChild($entriesNotes);
 
-  $viewEntriesH1.textContent = 'Entries';
-  $entriesPhotoURL.src = data.entries.photoURL;
-  $entriesTitle.textContent = data.entries.title;
-  $entriesNotes.textContent = data.entries.notes;
-  return $dataViewEntries;
+  $entriesPhotoURL.setAttribute('src', data.entries[i].photoURL);
+  $entriesTitle.textContent = data.entries[i].title;
+  $entriesNotes.textContent = data.entries[i].notes;
+
+  console.log('data:', data);
+  console.log('$entriesPhotoURL:', $entriesPhotoURL);
+  console.log('$entriesNotes.textContent', $entriesNotes);
+  console.log('$entriesTitle.textContent:', $entriesTitle);
+  return $DOMEntriesRow;
 }
+// debugger;
 
-var $formContainer = document.querySelector('#form-container');
-for (var i = 0; i < data.length; i++) {
-  $formContainer.appendChild(createJournalEntries(data[i]));
+for (var i = 0; i < data.entries.length; i++) {
+  if (data.length === 0) {
+    $dataEntryForm.className = '';
+    data.view = 'entry-form';
+    $headerTitle.textContent = 'New Entry';
+  } else {
+    $dataEntryForm.className = 'hidden';
+    $dataViewEntries.appendChild(renderEntries(data[i]));
+    $headerTitle.textContent = 'Entries';
+  }
 }

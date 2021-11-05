@@ -17,7 +17,7 @@ window.addEventListener('beforeunload', YourPersonalStorage);
 
 function YourPersonalStorage(event) {
   var dataJSON = JSON.stringify(data);
-  localStorage.setItem('javscript-local-storage', dataJSON);
+  localStorage.setItem('javascript-local-storage', dataJSON);
 }
 
 // MAKE AN IF STATEMENT FOR WHETHER OR NOT YOU ARE ON THE ENTRY-FORM

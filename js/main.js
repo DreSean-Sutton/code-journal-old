@@ -56,9 +56,10 @@ function renderEntries(event) {
   $DOMEntriesColumn.appendChild($entriesTitle);
   $DOMEntriesColumn.appendChild($entriesNotes);
 
-  $entriesPhotoURL.setAttribute('src', data.entries[i].photoURL);
-  $entriesTitle.textContent = data.entries[i].title;
-  $entriesNotes.textContent = data.entries[i].notes;
+  var $dataEntriesIndex = data.entries[i];
+  $entriesPhotoURL.setAttribute('src', $dataEntriesIndex.photoURL);
+  $entriesTitle.textContent = $dataEntriesIndex.title;
+  $entriesNotes.textContent = $dataEntriesIndex.notes;
 
   console.log('data:', data);
   console.log('$entriesPhotoURL:', $entriesPhotoURL);

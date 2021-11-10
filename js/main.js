@@ -12,9 +12,11 @@ var $form = document.querySelector('form');
 var $dataEntryForm = document.querySelector('#data-entry-form');
 var $dataViewEntries = document.querySelector('#entries');
 var $headerTitle = document.querySelector('#header-title');
+var $newAnchor = document.querySelector('#to-new-entries');
 
 $photoURL.addEventListener('input', photoInput);
 $form.addEventListener('submit', submitForm);
+$newAnchor.addEventListener('click', newButtonClick);
 
 function photoInput(event) {
   $image.setAttribute('src', $photoURL.value);
@@ -48,7 +50,7 @@ function renderEntries(event) {
   var $entriesNotes = document.createElement('p');
 
   $DOMEntriesRow.setAttribute('class', 'row');
-  $DOMEntriesColumn.setAttribute('class', 'column-half column-full');
+  $DOMEntriesColumn.setAttribute('class', 'column-full column-half');
 
   $dataViewEntries.prepend($DOMEntriesRow);
   $DOMEntriesRow.appendChild($DOMEntriesColumn);
@@ -63,7 +65,7 @@ function renderEntries(event) {
 
   console.log('data:', data);
   console.log('$entriesPhotoURL:', $entriesPhotoURL);
-  console.log('$entriesNotes.textContent', $entriesNotes);
+  console.log('$entriesNotes.textContent:', $entriesNotes);
   console.log('$entriesTitle.textContent:', $entriesTitle);
   return $DOMEntriesRow;
 }
@@ -79,4 +81,9 @@ for (var i = 0; i < data.entries.length; i++) {
     $dataViewEntries.appendChild(renderEntries(data[i]));
     $headerTitle.textContent = 'Entries';
   }
+}
+
+function newButtonClick(event) {
+  $dataEntryForm.className = '';
+  $dataViewEntries.className = 'hidden';
 }

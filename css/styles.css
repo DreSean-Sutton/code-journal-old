@@ -24,6 +24,14 @@ h1 {
   font-size: 3.5rem;
 }
 
+a {
+  border: 1px solid  rgb(86, 43, 129);
+  padding: 0.5rem;
+  background-color: rgb(86, 43, 129);
+  color: white;
+  border-radius: 6px;
+}
+
 /* POINTLESS VALUE BELOW */
 
 .submit-button-style {

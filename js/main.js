@@ -68,7 +68,7 @@ function noEntries() {
   }
 }
 function renderEntries(event) {
-  console.log('data:', data);
+  event.preventDefault();
   var $DOMEntriesRow = document.createElement('div');
   var $DOMPhotoColumn = document.createElement('div');
   var $DOMTitleNoteColumn = document.createElement('div');

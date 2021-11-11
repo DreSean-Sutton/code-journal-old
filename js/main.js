@@ -16,14 +16,13 @@ var $newAnchor = document.querySelector('#to-new-entries');
 
 $photoURL.addEventListener('input', photoInput);
 $form.addEventListener('submit', submitForm);
-$newAnchor.addEventListener('click', newButtonClick);
-
+window.addEventListener('DOMContentLoaded', renderEntries);
+$newAnchor.addEventListener('click', switchViewToEntryForm);
 function photoInput(event) {
   $image.setAttribute('src', $photoURL.value);
 }
 
 function submitForm(event) {
-  // debugger;
   event.preventDefault();
   var $formValues = {
     title: $title.value,
@@ -35,13 +34,27 @@ function submitForm(event) {
   $form.reset();
   data.nextEntryId++;
   data.entries.push($formValues);
-  // return data;
+  switchViewToEntries();
+  renderEntries();
 }
 
-window.addEventListener('DOMContentLoaded', renderEntries);
+function switchViewToEntries() {
+  $dataViewEntries.className = '';
+  $dataEntryForm.className = 'hidden';
+  $headerTitle.textContent = 'Entries';
+  $newAnchor.className = '';
+  data.view = 'entries';
+}
+
+function switchViewToEntryForm() {
+  $dataViewEntries.className = 'hidden';
+  $dataEntryForm.className = '';
+  $headerTitle.textContent = 'New Entry';
+  $newAnchor.className = 'hidden';
+  data.view = 'entry-form';
+}
 
 function renderEntries(event) {
-  // debugger;
   console.log('data:', data);
   var $DOMEntriesRow = document.createElement('div');
   var $DOMEntriesColumn = document.createElement('div');
@@ -69,21 +82,12 @@ function renderEntries(event) {
   console.log('$entriesTitle.textContent:', $entriesTitle);
   return $DOMEntriesRow;
 }
-// debugger;
 
 for (var i = 0; i < data.entries.length; i++) {
-  if (data.length === 0) {
-    $dataEntryForm.className = '';
-    data.view = 'entry-form';
-    $headerTitle.textContent = 'New Entry';
+  if ((data.view === 'entry-form') && (data.entries.length === 0)) {
+    switchViewToEntryForm();
   } else {
-    $dataEntryForm.className = 'hidden';
+    switchViewToEntries();
     $dataViewEntries.appendChild(renderEntries(data[i]));
-    $headerTitle.textContent = 'Entries';
   }
-}
-
-function newButtonClick(event) {
-  $dataEntryForm.className = '';
-  $dataViewEntries.className = 'hidden';
 }

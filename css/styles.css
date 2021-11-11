@@ -1,6 +1,3 @@
-.hidden {
-  display: none;
-}
 
 body {
   background-color: rgb(240, 240, 240);
@@ -30,6 +27,12 @@ a {
   background-color: rgb(86, 43, 129);
   color: white;
   border-radius: 6px;
+  text-decoration: none;
+}
+
+input:hover,
+textarea:hover {
+  border: 3px solid rgb(86, 43, 129);
 }
 
 .submit-button-style {

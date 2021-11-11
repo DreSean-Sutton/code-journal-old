@@ -13,11 +13,15 @@ var $dataEntryForm = document.querySelector('#data-entry-form');
 var $dataViewEntries = document.querySelector('#entries');
 var $headerTitle = document.querySelector('#header-title');
 var $newAnchor = document.querySelector('#to-new-entries');
+var $noEntries = document.querySelector('#no-entries');
+var $titleDiv = document.querySelector('#title-div');
+var $navEntries = document.querySelector('#entries-nav');
 
 $photoURL.addEventListener('input', photoInput);
 $form.addEventListener('submit', submitForm);
 window.addEventListener('DOMContentLoaded', renderEntries);
 $newAnchor.addEventListener('click', switchViewToEntryForm);
+$navEntries.addEventListener('click', switchViewToEntries);
 function photoInput(event) {
   $image.setAttribute('src', $photoURL.value);
 }
@@ -43,7 +47,10 @@ function switchViewToEntries() {
   $dataEntryForm.className = 'hidden';
   $headerTitle.textContent = 'Entries';
   $newAnchor.className = '';
+  $titleDiv.className = 'column-one-quarter';
+  noEntries();
   data.view = 'entries';
+
 }
 
 function switchViewToEntryForm() {
@@ -51,25 +58,37 @@ function switchViewToEntryForm() {
   $dataEntryForm.className = '';
   $headerTitle.textContent = 'New Entry';
   $newAnchor.className = 'hidden';
+  $titleDiv.className = 'column-full';
   data.view = 'entry-form';
+}
+
+function noEntries() {
+  var $noEntriesRow = document.createElement('div');
+  var $noEntriesColumn = document.createElement('div');
+  $dataViewEntries.appendChild($noEntriesRow);
+  $noEntriesRow.appendChild($noEntriesColumn);
+  $noEntriesColumn.appendChild($noEntries);
+  $noEntries.className = '';
 }
 
 function renderEntries(event) {
   console.log('data:', data);
   var $DOMEntriesRow = document.createElement('div');
-  var $DOMEntriesColumn = document.createElement('div');
+  var $DOMPhotoColumn = document.createElement('div');
+  var $DOMTitleNoteColumn = document.createElement('div');
   var $entriesTitle = document.createElement('h2');
   var $entriesPhotoURL = document.createElement('img');
   var $entriesNotes = document.createElement('p');
 
-  $DOMEntriesRow.setAttribute('class', 'row');
-  $DOMEntriesColumn.setAttribute('class', 'column-full column-half');
+  $DOMEntriesRow.className = 'row';
+  $DOMPhotoColumn.className = 'column-full column-half';
 
   $dataViewEntries.prepend($DOMEntriesRow);
-  $DOMEntriesRow.appendChild($DOMEntriesColumn);
-  $DOMEntriesColumn.appendChild($entriesPhotoURL);
-  $DOMEntriesColumn.appendChild($entriesTitle);
-  $DOMEntriesColumn.appendChild($entriesNotes);
+  $DOMEntriesRow.appendChild($DOMPhotoColumn);
+  $DOMEntriesRow.appendChild($DOMTitleNoteColumn);
+  $DOMPhotoColumn.appendChild($entriesPhotoURL);
+  $DOMTitleNoteColumn.appendChild($entriesTitle);
+  $DOMTitleNoteColumn.appendChild($entriesNotes);
 
   var $dataEntriesIndex = data.entries[i];
   $entriesPhotoURL.setAttribute('src', $dataEntriesIndex.photoURL);
@@ -83,11 +102,13 @@ function renderEntries(event) {
   return $DOMEntriesRow;
 }
 
-for (var i = 0; i < data.entries.length; i++) {
+for (var i = 0; i < data.entries.length - 1; i++) {
   if ((data.view === 'entry-form') && (data.entries.length === 0)) {
     switchViewToEntryForm();
+    $noEntries.className = '';
   } else {
+    $noEntries.className = 'hidden';
     switchViewToEntries();
-    $dataViewEntries.appendChild(renderEntries(data[i]));
+    $dataViewEntries.prepend(renderEntries(data[i]));
   }
 }

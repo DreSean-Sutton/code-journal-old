@@ -19,22 +19,22 @@
   <header>
     <div class="container">
       <div class="row align-items-center">
-        <div class="column-one-fourth">
-          <h3>Code Journal</h3>
+        <div class="column-one-third">
+          <h4>Code Journal</h4>
         </div>
-        <div class="column-three-fourth">
-          <nav id="entries-nav">Entries</nav>
+        <div class="column-two-third">
+          <a id="entries-nav" href="#">Entries</a>
         </div>
       </div>
     </div>
   </header>
   <main id="form-container" class="container">
-    <div class="row align-items-center">
-      <div class="column-half">
+    <div class="row align-items-center justify-content-space-between">
+      <div id="title-div" class="column-full">
         <h1 id="header-title">New Entry</h1>
       </div>
-      <div class="column-half">
-        <a id="to-new-entries" href="#entries-nav">New</a>
+      <div class="column-one-fourth text-align-right">
+        <a id="to-new-entries" class="hidden text-align-right" href="#">New</a>
       </div>
     </div>
     <div id="data-entry-form" data-view="entry-form">
@@ -55,7 +55,7 @@
             <label for="notes-form">Notes</label>
             <div>
               <textarea id="notes-form" class="notes-form-layout" rows="15" autocapitalize="sentences"
-                required></textarea>
+              required></textarea>
             </div>
           </div>
         </div>
@@ -67,6 +67,9 @@
       </form>
     </div>
     <div id="entries" data-view="entries">
+      <div>
+        <h2 id="no-entries" class="hidden">No entries have been recorded.</h2>
+      </div>
     </div>
   </main>
   <script src="js/data.js"></script>

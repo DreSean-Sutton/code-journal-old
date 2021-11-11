@@ -1,4 +1,8 @@
 
+.hidden {
+  display: none !important;
+}
+
 img {
   width: 100%;
   margin-bottom: 1rem;
@@ -12,12 +16,20 @@ textarea {
   resize: none;
 }
 
-h3 {
+h4 {
   padding-right: 1rem;
 }
 
 .align-items-center {
   align-items: center;
+}
+
+.text-align-right {
+  text-align: right;
+}
+
+.justify-content-space-between {
+  justify-content: space-between;
 }
 
 .submit-button-layout {
@@ -35,10 +47,6 @@ h3 {
   width: 100%;
   border-radius: 0;
   border: 1px solid rgba(182, 182, 182);
-}
-
-.hidden {
-  display: none !important;
 }
 
 .container {

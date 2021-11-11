@@ -19,7 +19,7 @@ var $navEntries = document.querySelector('#entries-nav');
 
 $photoURL.addEventListener('input', photoInput);
 $form.addEventListener('submit', submitForm);
-window.addEventListener('DOMContentLoaded', renderEntries);
+document.addEventListener('DOMContentLoaded', renderEntries);
 $newAnchor.addEventListener('click', switchViewToEntryForm);
 $navEntries.addEventListener('click', switchViewToEntries);
 function photoInput(event) {
@@ -63,19 +63,18 @@ function switchViewToEntryForm() {
 }
 
 function noEntries() {
-  if (data.view === 'entry-form') {
+  if (data.entries.length === 0) {
     $noEntries.className = '';
   }
 }
 function renderEntries(event) {
-  event.preventDefault();
+  switchViewToEntries();
   var $DOMEntriesRow = document.createElement('div');
   var $DOMPhotoColumn = document.createElement('div');
   var $DOMTitleNoteColumn = document.createElement('div');
   var $entriesTitle = document.createElement('h2');
   var $entriesPhotoURL = document.createElement('img');
   var $entriesNotes = document.createElement('p');
-
   $DOMEntriesRow.className = 'row';
   $DOMPhotoColumn.className = 'column-full column-half';
 
@@ -90,14 +89,13 @@ function renderEntries(event) {
   $entriesPhotoURL.setAttribute('src', $dataEntriesIndex.photoURL);
   $entriesTitle.textContent = $dataEntriesIndex.title;
   $entriesNotes.textContent = $dataEntriesIndex.notes;
-  $noEntries.className = 'hidden';
+  noEntries();
   return $DOMEntriesRow;
 }
 
 for (var i = 0; i < data.entries.length - 1; i++) {
   if ((data.view === 'entry-form') && (data.entries.length === 0)) {
-    switchViewToEntryForm();
-    $noEntries.className = '';
+    switchViewToEntries();
   } else {
     switchViewToEntries();
     $dataViewEntries.prepend(renderEntries(data[i]));

@@ -43,16 +43,13 @@ function submitForm(event) {
 }
 
 function switchViewToEntries() {
-  if (data.view === 'entries') {
-    return;
-  }
   $dataViewEntries.className = '';
   $dataEntryForm.className = 'hidden';
   $headerTitle.textContent = 'Entries';
   $newAnchor.className = '';
   $titleDiv.className = 'column-one-quarter';
+  noEntries();
   data.view = 'entries';
-  $noEntries.className = '';
 }
 
 function switchViewToEntryForm() {
@@ -62,19 +59,14 @@ function switchViewToEntryForm() {
   $newAnchor.className = 'hidden';
   $titleDiv.className = 'column-full';
   data.view = 'entry-form';
-  // $noEntries.className = 'hidden';
+  $noEntries.className = 'hidden';
 }
 
-// function noEntries() {
-//   var $noEntriesRow = document.createElement('div');
-//   var $noEntriesColumn = document.createElement('div');
-//   $dataViewEntries.appendChild($noEntriesRow);
-//   $noEntriesRow.appendChild($noEntriesColumn);
-//   $noEntriesColumn.appendChild($noEntries);
-//   $noEntries.className = '';
-//   $noEntries.textContent = 'No entries have been recorded.';
-// }
-
+function noEntries() {
+  if (data.view === 'entry-form') {
+    $noEntries.className = '';
+  }
+}
 function renderEntries(event) {
   console.log('data:', data);
   var $DOMEntriesRow = document.createElement('div');
@@ -109,7 +101,7 @@ function renderEntries(event) {
 
 for (var i = 0; i < data.entries.length - 1; i++) {
   if ((data.view === 'entry-form') && (data.entries.length === 0)) {
-    switchViewToEntries();
+    switchViewToEntryForm();
     $noEntries.className = '';
   } else {
     switchViewToEntries();

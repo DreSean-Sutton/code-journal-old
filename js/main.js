@@ -91,11 +91,6 @@ function renderEntries(event) {
   $entriesTitle.textContent = $dataEntriesIndex.title;
   $entriesNotes.textContent = $dataEntriesIndex.notes;
   $noEntries.className = 'hidden';
-
-  console.log('data:', data);
-  console.log('$entriesPhotoURL:', $entriesPhotoURL);
-  console.log('$entriesNotes.textContent:', $entriesNotes);
-  console.log('$entriesTitle.textContent:', $entriesTitle);
   return $DOMEntriesRow;
 }
 

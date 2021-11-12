@@ -68,7 +68,11 @@ function noEntries() {
   }
 }
 function renderEntries(event) {
-  switchViewToEntries();
+  if (data.view === 'entries') {
+    switchViewToEntries();
+  } else if (data.view === 'entry-form') {
+    switchViewToEntryForm();
+  }
   var $DOMEntriesRow = document.createElement('div');
   var $DOMPhotoColumn = document.createElement('div');
   var $DOMTitleNoteColumn = document.createElement('div');

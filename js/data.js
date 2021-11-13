@@ -17,5 +17,5 @@ window.addEventListener('beforeunload', YourPersonalStorage);
 
 function YourPersonalStorage(event) {
   var dataJSON = JSON.stringify(data);
-  localStorage.setItem('javscript-local-storage', dataJSON);
+  localStorage.setItem('javascript-local-storage', dataJSON);
 }

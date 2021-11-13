@@ -1,13 +1,13 @@
+
 body {
   background-color: rgb(240, 240, 240);
   font-family: 'roboto', sans-serif;
 }
 
 header {
-  font-family: 'lora', serif;
   background-color: rgb(86, 43, 129);
   color: white;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
 label {
@@ -16,7 +16,31 @@ label {
 }
 
 h1 {
-  font-size: 3.5rem;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 1.5rem;
+  letter-spacing: 0.1rem;
+  font-weight: normal;
+}
+
+a {
+  border: 1px solid  rgb(86, 43, 129);
+  padding: 0.5rem 1rem;
+  background-color: rgb(86, 43, 129);
+  color: white;
+  font-family: 'roboto', sans-serif;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 1.5rem;
+  letter-spacing: 0.1rem;
+}
+
+input:hover,
+textarea:hover {
+  border: 3px solid rgb(86, 43, 129);
 }
 
 .submit-button-style {

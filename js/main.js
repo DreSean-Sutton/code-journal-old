@@ -42,7 +42,7 @@ function submitForm(event) {
   data.entries.push($formValues);
   console.log(data.entries);
   switchViewToEntries();
-  return $dataViewEntries.prepend(renderEntry($formValues));
+  $dataViewEntries.prepend(renderEntry($formValues));
 }
 
 function switchViewToEntries() {
@@ -71,7 +71,7 @@ function noEntries() {
   }
 }
 
-function PleaseStayOnSamePageWhenRefresh() {
+function pageRefresher() {
   if (data.view === 'entries') {
     switchViewToEntries();
   } else if (data.view === 'entry-form') {
@@ -79,7 +79,7 @@ function PleaseStayOnSamePageWhenRefresh() {
   }
 }
 
-PleaseStayOnSamePageWhenRefresh();
+pageRefresher();
 
 function renderEntry(entry) {
   var $DOMEntriesRow = document.createElement('div');
@@ -105,12 +105,10 @@ function renderEntry(entry) {
 }
 
 function loopThroughRenderEntry() {
-
+  if (data.entries.length === 0) {
+    noEntries();
+  }
   for (var i = 0; i < data.entries.length; i++) {
-    if (data.entries.length === 0) {
-      noEntries();
-    } else {
-      $dataViewEntries.prepend(renderEntry(data.entries[i]));
-    }
+    $dataViewEntries.prepend(renderEntry(data.entries[i]));
   }
 }

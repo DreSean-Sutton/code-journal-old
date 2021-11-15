@@ -88,14 +88,19 @@ function renderEntry(entry) {
   var $entriesTitle = document.createElement('h2');
   var $entriesPhotoURL = document.createElement('img');
   var $entriesNotes = document.createElement('p');
+  var $pencilEditer = document.createElement('i');
+
   $DOMEntriesRow.className = 'row';
   $DOMPhotoColumn.className = 'column-full column-half';
+  $pencilEditer.className = 'fas fa-pencil-alt column-one-fourth';
+  $entriesTitle.className = 'column-half';
 
   $EntriesListHeader.prepend($DOMEntriesRow);
   $DOMEntriesRow.appendChild($DOMPhotoColumn);
   $DOMEntriesRow.appendChild($DOMTitleNoteColumn);
   $DOMPhotoColumn.appendChild($entriesPhotoURL);
   $DOMTitleNoteColumn.appendChild($entriesTitle);
+  $DOMTitleNoteColumn.appendChild($pencilEditer);
   $DOMTitleNoteColumn.appendChild($entriesNotes);
 
   $entriesPhotoURL.setAttribute('src', entry.photoURL);

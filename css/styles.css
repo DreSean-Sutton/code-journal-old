@@ -87,7 +87,9 @@ textarea:hover {
 }
 
 .entries-content-layout > i:hover::before {
+  display: inline-block;
   color: rgb(86, 43, 129);
+  transform: scale(1.5, 1.5);
   cursor: pointer;
 }
 

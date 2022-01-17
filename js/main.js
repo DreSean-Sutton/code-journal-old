@@ -44,7 +44,6 @@ function submitForm(event) {
   $form.reset();
   data.nextEntryId++;
   data.entries.push($formValues);
-  console.log(data.entries);
   switchViewToEntries();
   $dataViewEntries.prepend(renderEntry($formValues));
 }
@@ -121,6 +120,15 @@ function renderEntry(entry) {
       switchViewToEntryForm();
       var $currentRow = event.target.closest('.row');
       data.editing = $currentRow;
+      for (let i = 0; i < data.entries.length; i++) {
+        if (Number($currentRow.dataset.entryId) === data.entries[i].nextEntryId - 2) {
+          $title.value = data.entries[i].title;
+          $photoURL.value = data.entries[i].photoURL;
+          $image.setAttribute('src', data.entries[i].photoURL);
+          $notes.value = data.entries[i].notes;
+          break;
+        }
+      }
     }
   }
 

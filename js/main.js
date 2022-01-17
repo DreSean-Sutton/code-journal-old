@@ -94,6 +94,8 @@ function renderEntry(entry) {
   var $entriesNotes = document.createElement('p');
   var $pencilEditer = document.createElement('i');
 
+  // $DOMEntriesRow.addEventListener('click');
+
   $DOMEntriesRow.classList.add('row');
   $DOMPhotoColumn.classList.add('column-full', 'column-half');
   $DOMTitleNoteColumn.classList.add('entries-content-layout', 'column-half', 'column-full');

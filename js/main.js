@@ -116,8 +116,11 @@ function renderEntry(entry) {
   $DOMEntriesRow.setAttribute('data-entry-id', currentEntryId);
 
   function editEntry(event) {
+    // debugger;
     if (event.target === $pencilEditer) {
       switchViewToEntryForm();
+      var $currentRow = event.target.closest('.row');
+      data.editing = $currentRow;
     }
   }
 

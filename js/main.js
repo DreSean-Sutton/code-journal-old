@@ -94,7 +94,7 @@ function renderEntry(entry) {
   var $entriesNotes = document.createElement('p');
   var $pencilEditer = document.createElement('i');
 
-  // $DOMEntriesRow.addEventListener('click');
+  $DOMEntriesRow.addEventListener('click', editEntry);
 
   $DOMEntriesRow.classList.add('row');
   $DOMPhotoColumn.classList.add('column-full', 'column-half');
@@ -114,6 +114,13 @@ function renderEntry(entry) {
   $entriesTitle.textContent = entry.title;
   $entriesNotes.textContent = entry.notes;
   $DOMEntriesRow.setAttribute('data-entry-id', currentEntryId);
+
+  function editEntry(event) {
+    if (event.target === $pencilEditer) {
+      switchViewToEntryForm();
+    }
+  }
+
   return $EntriesListHeader;
 }
 

@@ -3,6 +3,9 @@
 /* global data */
 /* exported data */
 
+/*
+*/
+
 var $formContainer = document.querySelector('#form-container');
 var $image = document.querySelector('img');
 var $title = document.querySelector('#title-form');
@@ -90,10 +93,11 @@ function renderEntry(entry) {
   var $entriesNotes = document.createElement('p');
   var $pencilEditer = document.createElement('i');
 
-  $DOMEntriesRow.className = 'row';
-  $DOMPhotoColumn.className = 'column-full column-half';
-  $pencilEditer.className = 'fas fa-pencil-alt column-one-fourth';
-  $entriesTitle.className = 'column-half';
+  $DOMEntriesRow.classList.add('row');
+  $DOMPhotoColumn.classList.add('column-full', 'column-half');
+  $DOMTitleNoteColumn.classList.add('entries-content-layout', 'column-half', 'column-full');
+  $entriesTitle.classList.add('column-three-fourth');
+  $pencilEditer.classList.add('fas', 'fa-pencil-alt');
 
   $EntriesListHeader.prepend($DOMEntriesRow);
   $DOMEntriesRow.appendChild($DOMPhotoColumn);

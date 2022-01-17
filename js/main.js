@@ -5,6 +5,7 @@
 
 /*
 */
+var currentEntryId = 0;
 
 var $formContainer = document.querySelector('#form-container');
 var $image = document.querySelector('img');
@@ -110,6 +111,7 @@ function renderEntry(entry) {
   $entriesPhotoURL.setAttribute('src', entry.photoURL);
   $entriesTitle.textContent = entry.title;
   $entriesNotes.textContent = entry.notes;
+  $DOMEntriesRow.setAttribute('data-entry-id', currentEntryId);
   return $EntriesListHeader;
 }
 
@@ -119,5 +121,6 @@ function loopThroughRenderEntry() {
   }
   for (var i = 0; i < data.entries.length; i++) {
     $dataViewEntries.prepend(renderEntry(data.entries[i]));
+    currentEntryId++;
   }
 }

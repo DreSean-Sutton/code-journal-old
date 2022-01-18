@@ -33,19 +33,33 @@ function photoInput(event) {
 }
 
 function submitForm(event) {
+  // debugger;
   event.preventDefault();
-  var $formValues = {
-    title: $title.value,
-    photoURL: $photoURL.value,
-    notes: $notes.value,
-    nextEntryId: data.nextEntryId + 1
-  };
+  if (data.editing === null) {
+    var $formValues = {
+      title: $title.value,
+      photoURL: $photoURL.value,
+      notes: $notes.value,
+      nextEntryId: data.nextEntryId + 1
+    };
+    data.nextEntryId++;
+    data.entries.push($formValues);
+    $dataViewEntries.prepend(renderEntry($formValues));
+  } else {
+    data.editing.title = $title.value;
+    data.editing.photoURL = $photoURL.value;
+    data.editing.notes = $notes.value;
+    for (var j = 0; j < data.entries.length; j++) {
+      if (data.entries[j].nextEntryId === data.editing.nextEntryId) {
+        data.entries.splice(j, 1, data.editing);
+        data.editing = null;
+        break;
+      }
+    }
+  }
   $image.src = 'images/placeholder-image-square.jpg';
-  $form.reset();
-  data.nextEntryId++;
-  data.entries.push($formValues);
   switchViewToEntries();
-  $dataViewEntries.prepend(renderEntry($formValues));
+  $form.reset();
 }
 
 function switchViewToEntries() {
@@ -119,13 +133,18 @@ function renderEntry(entry) {
     if (event.target === $pencilEditer) {
       switchViewToEntryForm();
       var $currentRow = event.target.closest('.row');
-      data.editing = $currentRow;
       for (let i = 0; i < data.entries.length; i++) {
         if (Number($currentRow.dataset.entryId) === data.entries[i].nextEntryId - 2) {
           $title.value = data.entries[i].title;
           $photoURL.value = data.entries[i].photoURL;
           $image.setAttribute('src', data.entries[i].photoURL);
           $notes.value = data.entries[i].notes;
+          data.editing = {
+            title: $title.value,
+            photoURL: $photoURL.value,
+            notes: $notes.value,
+            nextEntryId: data.entries[i].nextEntryId
+          };
           break;
         }
       }

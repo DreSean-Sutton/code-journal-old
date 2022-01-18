@@ -49,12 +49,20 @@ function submitForm(event) {
     data.editing.title = $title.value;
     data.editing.photoURL = $photoURL.value;
     data.editing.notes = $notes.value;
+
     for (var j = 0; j < data.entries.length; j++) {
       if (data.entries[j].nextEntryId === data.editing.nextEntryId) {
         data.entries.splice(j, 1, data.editing);
-        data.editing = null;
-        break;
+
+        for (let k = $EntriesListHeader.children.length - 1; k >= 0; k--) {
+          if (Number($EntriesListHeader.children[k].dataset.entryId) === data.editing.nextEntryId - 2) {
+            $EntriesListHeader.children[k].replace(renderEntry(data.editing));
+            break;
+          }
+        }
       }
+
+      data.editing = null;
     }
   }
   $image.src = 'images/placeholder-image-square.jpg';

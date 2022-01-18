@@ -53,13 +53,14 @@ function submitForm(event) {
     for (var j = 0; j < data.entries.length; j++) {
       if (data.entries[j].nextEntryId === data.editing.nextEntryId) {
         data.entries.splice(j, 1, data.editing);
-
-        for (let k = $EntriesListHeader.children.length - 1; k >= 0; k--) {
-          if (Number($EntriesListHeader.children[k].dataset.entryId) === data.editing.nextEntryId - 2) {
-            $EntriesListHeader.children[k].replace(renderEntry(data.editing));
-            break;
-          }
-        }
+        break;
+      }
+    }
+    for (let k = $EntriesListHeader.children.length - 1; k >= 0; k--) {
+      if (Number($EntriesListHeader.children[k].dataset.entryId) === data.editing.nextEntryId - 2) {
+        // var $currentRow = document.querySelector('#entries-list-header > .row');
+        // $EntriesListHeader.replaceWith(renderEntry(data.editing));
+        break;
       }
 
       data.editing = null;

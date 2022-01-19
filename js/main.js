@@ -58,10 +58,10 @@ function submitForm(event) {
     }
     for (let k = $EntriesListHeader.children.length - 1; k >= 0; k--) {
       if (Number($EntriesListHeader.children[k].dataset.entryId) === data.editing.nextEntryId - 2) {
-        $EntriesListHeader.children[data.editing.nextEntryId - 2].querySelector('h2').textContent = data.editing.title;
-        $EntriesListHeader.children[data.editing.nextEntryId - 2].querySelector('img').textContent = data.editing.photoURL;
-        $EntriesListHeader.children[data.editing.nextEntryId - 2].querySelector('img').setAttribute('src', data.editing.photoURL);
-        $EntriesListHeader.children[data.editing.nextEntryId - 2].querySelector('p').textContent = data.editing.notes;
+        $EntriesListHeader.children[k].querySelector('h2').textContent = data.editing.title;
+        $EntriesListHeader.children[k].querySelector('img').textContent = data.editing.photoURL;
+        $EntriesListHeader.children[k].querySelector('img').setAttribute('src', data.editing.photoURL);
+        $EntriesListHeader.children[k].querySelector('p').textContent = data.editing.notes;
         data.editing = null;
         break;
       }

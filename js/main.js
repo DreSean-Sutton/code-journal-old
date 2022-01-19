@@ -71,6 +71,11 @@ function submitForm(event) {
 }
 
 function switchViewToEntries() {
+  // $title.value = '';
+  // $photoURL.value = '';
+  // $image.src = 'images/placeholder-image-square.jpg';
+  // $notes.value = '';
+  $form.reset();
   $dataViewEntries.className = '';
   $dataEntryForm.className = 'hidden';
   $headerTitle.textContent = 'Entries';

@@ -3,6 +3,8 @@
 /* global data */
 /* exported data */
 
+var currentEntryId = 0;
+
 var $formContainer = document.querySelector('#form-container');
 var $image = document.querySelector('img');
 var $title = document.querySelector('#title-form');
@@ -30,28 +32,57 @@ function photoInput(event) {
 
 function submitForm(event) {
   event.preventDefault();
-  var $formValues = {
-    title: $title.value,
-    photoURL: $photoURL.value,
-    notes: $notes.value,
-    nextEntryId: data.nextEntryId + 1
-  };
+  if (data.editing === null) {
+    var $formValues = {
+      title: $title.value,
+      photoURL: $photoURL.value,
+      notes: $notes.value,
+      nextEntryId: data.nextEntryId + 1
+    };
+    data.nextEntryId++;
+    data.entries.push($formValues);
+    $dataViewEntries.prepend(renderEntry($formValues));
+  } else {
+    data.editing.title = $title.value;
+    data.editing.photoURL = $photoURL.value;
+    data.editing.notes = $notes.value;
+
+    for (var j = 0; j < data.entries.length; j++) {
+      if (data.entries[j].nextEntryId === data.editing.nextEntryId) {
+        data.entries.splice(j, 1, data.editing);
+        break;
+      }
+    }
+    for (let k = $EntriesListHeader.children.length - 1; k >= 0; k--) {
+      if (Number($EntriesListHeader.children[k].dataset.entryId) === data.editing.nextEntryId - 2) {
+        $EntriesListHeader.children[k].querySelector('h2').textContent = data.editing.title;
+        $EntriesListHeader.children[k].querySelector('img').textContent = data.editing.photoURL;
+        $EntriesListHeader.children[k].querySelector('img').setAttribute('src', data.editing.photoURL);
+        $EntriesListHeader.children[k].querySelector('p').textContent = data.editing.notes;
+        data.editing = null;
+        break;
+      }
+
+    }
+  }
   $image.src = 'images/placeholder-image-square.jpg';
-  $form.reset();
-  data.nextEntryId++;
-  data.entries.push($formValues);
-  console.log(data.entries);
   switchViewToEntries();
-  $dataViewEntries.prepend(renderEntry($formValues));
+  $form.reset();
 }
 
 function switchViewToEntries() {
+  // $title.value = '';
+  // $photoURL.value = '';
+  // $image.src = 'images/placeholder-image-square.jpg';
+  // $notes.value = '';
+  $form.reset();
   $dataViewEntries.className = '';
   $dataEntryForm.className = 'hidden';
   $headerTitle.textContent = 'Entries';
   $newAnchor.className = '';
   $titleDiv.className = 'column-one-fourth';
   data.view = 'entries';
+  data.editing = null;
   noEntries();
 }
 
@@ -88,19 +119,51 @@ function renderEntry(entry) {
   var $entriesTitle = document.createElement('h2');
   var $entriesPhotoURL = document.createElement('img');
   var $entriesNotes = document.createElement('p');
-  $DOMEntriesRow.className = 'row';
-  $DOMPhotoColumn.className = 'column-full column-half';
+  var $pencilEditer = document.createElement('i');
+
+  $DOMEntriesRow.addEventListener('click', editEntry);
+
+  $DOMEntriesRow.classList.add('row');
+  $DOMPhotoColumn.classList.add('column-full', 'column-half');
+  $DOMTitleNoteColumn.classList.add('entries-content-layout', 'column-half', 'column-full');
+  $entriesTitle.classList.add('column-three-fourth');
+  $pencilEditer.classList.add('fas', 'fa-pencil-alt');
 
   $EntriesListHeader.prepend($DOMEntriesRow);
   $DOMEntriesRow.appendChild($DOMPhotoColumn);
   $DOMEntriesRow.appendChild($DOMTitleNoteColumn);
   $DOMPhotoColumn.appendChild($entriesPhotoURL);
   $DOMTitleNoteColumn.appendChild($entriesTitle);
+  $DOMTitleNoteColumn.appendChild($pencilEditer);
   $DOMTitleNoteColumn.appendChild($entriesNotes);
 
   $entriesPhotoURL.setAttribute('src', entry.photoURL);
   $entriesTitle.textContent = entry.title;
   $entriesNotes.textContent = entry.notes;
+  $DOMEntriesRow.setAttribute('data-entry-id', currentEntryId);
+
+  function editEntry(event) {
+    if (event.target === $pencilEditer) {
+      switchViewToEntryForm();
+      var $currentRow = event.target.closest('.row');
+      for (let i = 0; i < data.entries.length; i++) {
+        if (Number($currentRow.dataset.entryId) === data.entries[i].nextEntryId - 2) {
+          $title.value = data.entries[i].title;
+          $photoURL.value = data.entries[i].photoURL;
+          $image.setAttribute('src', data.entries[i].photoURL);
+          $notes.value = data.entries[i].notes;
+          data.editing = {
+            title: $title.value,
+            photoURL: $photoURL.value,
+            notes: $notes.value,
+            nextEntryId: data.entries[i].nextEntryId
+          };
+          break;
+        }
+      }
+    }
+  }
+
   return $EntriesListHeader;
 }
 
@@ -110,5 +173,6 @@ function loopThroughRenderEntry() {
   }
   for (var i = 0; i < data.entries.length; i++) {
     $dataViewEntries.prepend(renderEntry(data.entries[i]));
+    currentEntryId++;
   }
 }

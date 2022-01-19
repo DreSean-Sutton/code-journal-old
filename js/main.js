@@ -3,8 +3,6 @@
 /* global data */
 /* exported data */
 
-/*
-*/
 var currentEntryId = 0;
 
 var $formContainer = document.querySelector('#form-container');

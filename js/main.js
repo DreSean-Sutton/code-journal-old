@@ -31,7 +31,6 @@ function photoInput(event) {
 }
 
 function submitForm(event) {
-  // debugger;
   event.preventDefault();
   if (data.editing === null) {
     var $formValues = {
@@ -139,7 +138,6 @@ function renderEntry(entry) {
   $DOMEntriesRow.setAttribute('data-entry-id', currentEntryId);
 
   function editEntry(event) {
-    // debugger;
     if (event.target === $pencilEditer) {
       switchViewToEntryForm();
       var $currentRow = event.target.closest('.row');

@@ -136,7 +136,12 @@ function cancelOrConfirm(event) {
         for (var i = j; i < data.entries.length; i++) {
           data.entries[i].nextEntryId -= 1;
         }
-        break;
+        for (let k = $EntriesListHeader.children.length - 1; k >= 0; k--) {
+          if (Number($EntriesListHeader.children[k].dataset.entryId) === data.editing.nextEntryId - 2) {
+            $EntriesListHeader.removeChild($EntriesListHeader.children[k]);
+            break;
+          }
+        }
       }
     }
     switchViewToEntries();

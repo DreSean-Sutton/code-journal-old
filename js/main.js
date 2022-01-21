@@ -147,6 +147,9 @@ function cancelOrConfirm(event) {
             break;
           }
         }
+        for (let l = j; l < $EntriesListHeader.children.length; l++) {
+          $EntriesListHeader.children[l].dataset.entryId -= 1;
+        }
       }
     }
     switchViewToEntries();

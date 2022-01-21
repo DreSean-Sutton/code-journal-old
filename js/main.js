@@ -11,6 +11,7 @@ var $title = document.querySelector('#title-form');
 var $photoURL = document.querySelector('#photo-form');
 var $notes = document.querySelector('#notes-form');
 var $form = document.querySelector('form');
+var $submitButton = document.querySelector('#submit-button');
 var $dataEntryForm = document.querySelector('#data-entry-form');
 var $dataViewEntries = document.querySelector('#entries');
 var $headerTitle = document.querySelector('#header-title');
@@ -20,12 +21,17 @@ var $titleDiv = document.querySelector('#title-div');
 var $navEntries = document.querySelector('#entries-nav');
 var $EntriesListHeader = document.querySelector('#entries-list-header');
 var $deleteButton = document.querySelector('#delete-button');
+var $deleteConfirmationModal = document.querySelector('#modal');
+var $cancelButton = $deleteConfirmationModal.querySelector('cancel');
+var $confirmButton = $deleteConfirmationModal.querySelector('confirm');
 
 $photoURL.addEventListener('input', photoInput);
 $form.addEventListener('submit', submitForm);
 window.addEventListener('DOMContentLoaded', loopThroughRenderEntry);
 $newAnchor.addEventListener('click', switchViewToEntryForm);
 $navEntries.addEventListener('click', switchViewToEntries);
+$deleteButton.addEventListener('click', bringUpDeleteModal);
+$deleteConfirmationModal.addEventListener('click', cancelOrConfirm);
 
 function photoInput(event) {
   $image.setAttribute('src', $photoURL.value);
@@ -110,9 +116,16 @@ function pageRefresher() {
 
 pageRefresher();
 
-// function deleteEntry {
+function bringUpDeleteModal(event) {
+  switchViewToEntryForm();
+  $deleteConfirmationModal.classList.remove('hidden');
+}
 
-// }
+function cancelOrConfirm(event) {
+  if (event.target === $cancelButton) {
+    $deleteConfirmationModal.classList.add('hidden');
+  }
+}
 
 function renderEntry(entry) {
   var $DOMEntriesRow = document.createElement('div');

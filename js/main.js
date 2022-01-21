@@ -127,13 +127,11 @@ function bringUpDeleteModal(event) {
 }
 
 function cancelOrConfirm(event) {
-  // debugger;
   if (event.target === $cancelButton) {
     $deleteConfirmationModal.classList.add('hidden');
   }
 
   if (event.target === $confirmButton) {
-    // debugger;
     for (var j = 0; j < data.entries.length; j++) {
       if (data.entries[j].nextEntryId === data.editing.nextEntryId) {
         data.entries.splice(j, 1);
@@ -169,8 +167,8 @@ function renderEntry(entry) {
   $DOMEntriesRow.addEventListener('click', editEntry);
 
   $DOMEntriesRow.classList.add('row');
-  $DOMPhotoColumn.classList.add('column-full', 'column-half');
-  $DOMTitleNoteColumn.classList.add('entries-content-layout', 'column-half', 'column-full');
+  $DOMPhotoColumn.classList.add('entries-img-layout', 'column-full', 'column-half');
+  $DOMTitleNoteColumn.classList.add('entries-content-layout', 'column-half', 'column-full', 'entries-img-layout');
   $entriesTitle.classList.add('column-three-fourth');
   $pencilEditer.classList.add('fas', 'fa-pencil-alt');
 

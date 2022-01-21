@@ -116,6 +116,10 @@ a {
 
 /* ENTRIES SECTION */
 
+.entries-img-layout {
+  margin: 1rem 0;
+}
+
 .entries-content-layout {
   display: flex;
   flex-wrap: wrap;
@@ -126,6 +130,11 @@ a {
 
 .entries-content-layout > h3 {
   width: 95%;
+}
+
+.entries-content-layout > p {
+  margin: 0;
+  align-self: flex-start;
 }
 
 .entries-content-layout > i {

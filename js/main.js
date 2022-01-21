@@ -22,8 +22,8 @@ var $navEntries = document.querySelector('#entries-nav');
 var $EntriesListHeader = document.querySelector('#entries-list-header');
 var $deleteButton = document.querySelector('#delete-button');
 var $deleteConfirmationModal = document.querySelector('#modal');
-var $cancelButton = $deleteConfirmationModal.querySelector('cancel');
-var $confirmButton = $deleteConfirmationModal.querySelector('confirm');
+var $cancelButton = $deleteConfirmationModal.querySelector('.cancel');
+var $confirmButton = $deleteConfirmationModal.querySelector('.confirm');
 
 $photoURL.addEventListener('input', photoInput);
 $form.addEventListener('submit', submitForm);

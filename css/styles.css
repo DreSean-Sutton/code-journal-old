@@ -53,6 +53,18 @@ a {
   letter-spacing: 0.1rem;
 }
 
+/* NAVIGATION SECTION */
+
+header a {
+  transition: 100ms;
+}
+
+header a:hover,
+header a:active {
+  background-color: hsl(270, 60%, 40%);
+  box-shadow: -1px -1px hsl(270, 60%, 40%);
+}
+
 /* NEW ENTRY SECTION */
 
 .input-layout {
@@ -222,10 +234,6 @@ a {
 
 .align-items-center {
   align-items: center;
-}
-
-.text-align-right {
-  text-align: right;
 }
 
 .justify-content-space-between {

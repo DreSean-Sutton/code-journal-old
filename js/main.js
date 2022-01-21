@@ -18,7 +18,6 @@ var $dataViewEntries = document.querySelector('#entries');
 var $headerTitle = document.querySelector('#header-title');
 var $newAnchor = document.querySelector('#to-new-entries');
 var $noEntries = document.querySelector('#no-entries');
-var $titleDiv = document.querySelector('#title-div');
 var $navEntries = document.querySelector('#entries-nav');
 var $EntriesListHeader = document.querySelector('#entries-list-header');
 var $deleteButton = document.querySelector('#delete-button');
@@ -83,7 +82,6 @@ function switchViewToEntries() {
   $dataEntryForm.className = 'hidden';
   $headerTitle.textContent = 'Entries';
   $newAnchor.className = '';
-  $titleDiv.className = 'column-one-fourth';
   data.view = 'entries';
   data.editing = null;
   $deleteButton.classList.add('hidden');
@@ -100,7 +98,6 @@ function switchViewToEntryForm() {
   $dataEntryForm.className = '';
   $headerTitle.textContent = 'New Entry';
   $newAnchor.className = 'hidden';
-  $titleDiv.className = 'column-full';
   data.view = 'entry-form';
   $noEntries.className = 'hidden';
 }

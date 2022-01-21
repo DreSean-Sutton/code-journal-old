@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
 /* global data */
@@ -11,21 +12,26 @@ var $title = document.querySelector('#title-form');
 var $photoURL = document.querySelector('#photo-form');
 var $notes = document.querySelector('#notes-form');
 var $form = document.querySelector('form');
+var $submitButton = document.querySelector('#submit-button');
 var $dataEntryForm = document.querySelector('#data-entry-form');
 var $dataViewEntries = document.querySelector('#entries');
 var $headerTitle = document.querySelector('#header-title');
 var $newAnchor = document.querySelector('#to-new-entries');
 var $noEntries = document.querySelector('#no-entries');
-var $titleDiv = document.querySelector('#title-div');
 var $navEntries = document.querySelector('#entries-nav');
 var $EntriesListHeader = document.querySelector('#entries-list-header');
 var $deleteButton = document.querySelector('#delete-button');
+var $deleteConfirmationModal = document.querySelector('#modal');
+var $cancelButton = $deleteConfirmationModal.querySelector('.cancel');
+var $confirmButton = $deleteConfirmationModal.querySelector('.confirm');
 
 $photoURL.addEventListener('input', photoInput);
 $form.addEventListener('submit', submitForm);
 window.addEventListener('DOMContentLoaded', loopThroughRenderEntry);
 $newAnchor.addEventListener('click', switchViewToEntryForm);
 $navEntries.addEventListener('click', switchViewToEntries);
+$deleteButton.addEventListener('click', bringUpDeleteModal);
+$deleteConfirmationModal.addEventListener('click', cancelOrConfirm);
 
 function photoInput(event) {
   $image.setAttribute('src', $photoURL.value);
@@ -43,6 +49,7 @@ function submitForm(event) {
     data.nextEntryId++;
     data.entries.push($formValues);
     $dataViewEntries.prepend(renderEntry($formValues));
+    currentEntryId++;
   } else {
     data.editing.title = $title.value;
     data.editing.photoURL = $photoURL.value;
@@ -63,7 +70,6 @@ function submitForm(event) {
         data.editing = null;
         break;
       }
-
     }
   }
   $image.src = 'images/placeholder-image-square.jpg';
@@ -72,15 +78,18 @@ function submitForm(event) {
 }
 
 function switchViewToEntries() {
-  $form.reset();
   $dataViewEntries.className = '';
   $dataEntryForm.className = 'hidden';
   $headerTitle.textContent = 'Entries';
   $newAnchor.className = '';
-  $titleDiv.className = 'column-one-fourth';
   data.view = 'entries';
   data.editing = null;
   $deleteButton.classList.add('hidden');
+  $deleteConfirmationModal.classList.add('hidden');
+  $title.value = '';
+  $photoURL.value = '';
+  $image.src = 'images/placeholder-image-square.jpg';
+  $notes.value = '';
   noEntries();
 }
 
@@ -89,7 +98,6 @@ function switchViewToEntryForm() {
   $dataEntryForm.className = '';
   $headerTitle.textContent = 'New Entry';
   $newAnchor.className = 'hidden';
-  $titleDiv.className = 'column-full';
   data.view = 'entry-form';
   $noEntries.className = 'hidden';
 }
@@ -110,9 +118,39 @@ function pageRefresher() {
 
 pageRefresher();
 
-// function deleteEntry {
+function bringUpDeleteModal(event) {
+  switchViewToEntryForm();
+  $deleteConfirmationModal.classList.remove('hidden');
+}
 
-// }
+function cancelOrConfirm(event) {
+  if (event.target === $cancelButton) {
+    $deleteConfirmationModal.classList.add('hidden');
+  }
+
+  if (event.target === $confirmButton) {
+    for (var j = 0; j < data.entries.length; j++) {
+      if (data.entries[j].nextEntryId === data.editing.nextEntryId) {
+        data.entries.splice(j, 1);
+        data.nextEntryId -= 1;
+        for (var i = j; i < data.entries.length; i++) {
+          data.entries[i].nextEntryId -= 1;
+        }
+        for (let k = $EntriesListHeader.children.length - 1; k >= 0; k--) {
+          if (Number($EntriesListHeader.children[k].dataset.entryId) === data.editing.nextEntryId - 2) {
+            $EntriesListHeader.removeChild($EntriesListHeader.children[k]);
+            break;
+          }
+        }
+        for (let l = j; l < $EntriesListHeader.children.length; l++) {
+          $EntriesListHeader.children[l].dataset.entryId -= 1;
+        }
+      }
+    }
+    currentEntryId--;
+    switchViewToEntries();
+  }
+}
 
 function renderEntry(entry) {
   var $DOMEntriesRow = document.createElement('div');
@@ -126,8 +164,8 @@ function renderEntry(entry) {
   $DOMEntriesRow.addEventListener('click', editEntry);
 
   $DOMEntriesRow.classList.add('row');
-  $DOMPhotoColumn.classList.add('column-full', 'column-half');
-  $DOMTitleNoteColumn.classList.add('entries-content-layout', 'column-half', 'column-full');
+  $DOMPhotoColumn.classList.add('entries-img-layout', 'column-full', 'column-half');
+  $DOMTitleNoteColumn.classList.add('entries-content-layout', 'column-half', 'column-full', 'entries-img-layout');
   $entriesTitle.classList.add('column-three-fourth');
   $pencilEditer.classList.add('fas', 'fa-pencil-alt');
 

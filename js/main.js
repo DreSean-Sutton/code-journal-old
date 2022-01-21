@@ -79,7 +79,6 @@ function submitForm(event) {
 }
 
 function switchViewToEntries() {
-  $form.reset();
   $dataViewEntries.className = '';
   $dataEntryForm.className = 'hidden';
   $headerTitle.textContent = 'Entries';
@@ -88,6 +87,11 @@ function switchViewToEntries() {
   data.view = 'entries';
   data.editing = null;
   $deleteButton.classList.add('hidden');
+  $deleteConfirmationModal.classList.add('hidden');
+  $title.value = '';
+  $photoURL.value = '';
+  $image.src = 'images/placeholder-image-square.jpg';
+  $notes.value = '';
   noEntries();
 }
 
@@ -135,6 +139,7 @@ function cancelOrConfirm(event) {
         data.nextEntryId -= 1;
         for (var i = j; i < data.entries.length; i++) {
           data.entries[i].nextEntryId -= 1;
+          currentEntryId -= 1;
         }
         for (let k = $EntriesListHeader.children.length - 1; k >= 0; k--) {
           if (Number($EntriesListHeader.children[k].dataset.entryId) === data.editing.nextEntryId - 2) {

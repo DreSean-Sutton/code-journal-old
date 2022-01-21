@@ -125,6 +125,16 @@ function cancelOrConfirm(event) {
   if (event.target === $cancelButton) {
     $deleteConfirmationModal.classList.add('hidden');
   }
+
+  if (event.target === $confirmButton) {
+    for (var j = 0; j < data.entries.length; j++) {
+      if (data.entries[j].nextEntryId === data.editing.nextEntryId) {
+        data.entries.splice(j, 1);
+        break;
+      }
+    }
+    switchViewToEntries();
+  }
 }
 
 function renderEntry(entry) {

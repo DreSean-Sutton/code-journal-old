@@ -140,6 +140,10 @@ a {
   cursor: pointer;
 }
 
+#no-entries {
+  text-align: center;
+}
+
 /* MODAL SECTION */
 
 .modal-layout {

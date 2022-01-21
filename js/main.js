@@ -50,6 +50,7 @@ function submitForm(event) {
     data.nextEntryId++;
     data.entries.push($formValues);
     $dataViewEntries.prepend(renderEntry($formValues));
+    currentEntryId++;
   } else {
     data.editing.title = $title.value;
     data.editing.photoURL = $photoURL.value;
@@ -70,7 +71,6 @@ function submitForm(event) {
         data.editing = null;
         break;
       }
-
     }
   }
   $image.src = 'images/placeholder-image-square.jpg';
@@ -133,13 +133,13 @@ function cancelOrConfirm(event) {
   }
 
   if (event.target === $confirmButton) {
+    // debugger;
     for (var j = 0; j < data.entries.length; j++) {
       if (data.entries[j].nextEntryId === data.editing.nextEntryId) {
         data.entries.splice(j, 1);
         data.nextEntryId -= 1;
         for (var i = j; i < data.entries.length; i++) {
           data.entries[i].nextEntryId -= 1;
-          currentEntryId -= 1;
         }
         for (let k = $EntriesListHeader.children.length - 1; k >= 0; k--) {
           if (Number($EntriesListHeader.children[k].dataset.entryId) === data.editing.nextEntryId - 2) {
@@ -152,6 +152,7 @@ function cancelOrConfirm(event) {
         }
       }
     }
+    currentEntryId--;
     switchViewToEntries();
   }
 }

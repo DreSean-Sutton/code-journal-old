@@ -20,16 +20,16 @@ h1 {
   font-weight: bold;
 }
 
-h2 {
+h2,
+h3 {
   font-size: 1.5rem;
   letter-spacing: 0.1rem;
-  font-weight: normal;
+  font-weight: bold;
 }
 
 p {
   font-weight: normal;
-  text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
 img {
@@ -59,8 +59,11 @@ a {
 
 input:hover,
 textarea:hover {
-  border: 3px solid rgb(86, 43, 129);
+  border: 2px solid rgb(86, 43, 129);
+  transition: 50ms;
 }
+
+/* NEW ENTRY SECTION */
 
 .submit-button-style {
   color: white;
@@ -70,17 +73,43 @@ textarea:hover {
   border-radius: 0.4rem;
 }
 
+#delete-button {
+  font-size: 1.3rem;
+  color: red;
+  border: none;
+  text-transform: capitalize;
+  text-decoration: underline;
+  transition: 300ms ease-in-out;
+  cursor: pointer;
+}
+
+#delete-button:hover,
+#delete-button:focus {
+  color: white;
+  background-color: red;
+  border-radius: 0.4rem;
+  padding: 0.75em;
+  text-decoration: none;
+}
+
+/* ENTRIES SECTION */
+
 .entries-content-layout {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  height: 260px;
+  overflow: auto;
 }
 
-.entries-content-layout > h2 {
+.entries-content-layout > h3 {
   width: 95%;
 }
 
 .entries-content-layout > i {
+  position: relative;
+  right: 5px;
+  bottom: 10px;
   width: 5%;
   font-size: 25px;
   text-align: right;
@@ -91,6 +120,19 @@ textarea:hover {
   color: rgb(86, 43, 129);
   transform: scale(1.5, 1.5);
   cursor: pointer;
+}
+
+.input-layout {
+  width: 100%;
+  display: block;
+  padding: 0.5rem;
+}
+
+.notes-form-layout {
+  display: block;
+  width: 100%;
+  border-radius: 0;
+  border: 2px solid rgba(182, 182, 182);
 }
 
 .align-items-center {
@@ -107,17 +149,4 @@ textarea:hover {
 
 .submit-button-layout {
   text-align: end;
-}
-
-.input-layout {
-  width: 100%;
-  display: block;
-  padding: 0.5rem;
-}
-
-.notes-form-layout {
-  display: block;
-  width: 100%;
-  border-radius: 0;
-  border: 1px solid rgba(182, 182, 182);
 }

@@ -19,6 +19,7 @@ var $noEntries = document.querySelector('#no-entries');
 var $titleDiv = document.querySelector('#title-div');
 var $navEntries = document.querySelector('#entries-nav');
 var $EntriesListHeader = document.querySelector('#entries-list-header');
+var $deleteButton = document.querySelector('#delete-button');
 
 $photoURL.addEventListener('input', photoInput);
 $form.addEventListener('submit', submitForm);
@@ -55,7 +56,7 @@ function submitForm(event) {
     }
     for (let k = $EntriesListHeader.children.length - 1; k >= 0; k--) {
       if (Number($EntriesListHeader.children[k].dataset.entryId) === data.editing.nextEntryId - 2) {
-        $EntriesListHeader.children[k].querySelector('h2').textContent = data.editing.title;
+        $EntriesListHeader.children[k].querySelector('h3').textContent = data.editing.title;
         $EntriesListHeader.children[k].querySelector('img').textContent = data.editing.photoURL;
         $EntriesListHeader.children[k].querySelector('img').setAttribute('src', data.editing.photoURL);
         $EntriesListHeader.children[k].querySelector('p').textContent = data.editing.notes;
@@ -71,10 +72,6 @@ function submitForm(event) {
 }
 
 function switchViewToEntries() {
-  // $title.value = '';
-  // $photoURL.value = '';
-  // $image.src = 'images/placeholder-image-square.jpg';
-  // $notes.value = '';
   $form.reset();
   $dataViewEntries.className = '';
   $dataEntryForm.className = 'hidden';
@@ -83,6 +80,7 @@ function switchViewToEntries() {
   $titleDiv.className = 'column-one-fourth';
   data.view = 'entries';
   data.editing = null;
+  $deleteButton.classList.add('hidden');
   noEntries();
 }
 
@@ -112,11 +110,15 @@ function pageRefresher() {
 
 pageRefresher();
 
+// function deleteEntry {
+
+// }
+
 function renderEntry(entry) {
   var $DOMEntriesRow = document.createElement('div');
   var $DOMPhotoColumn = document.createElement('div');
   var $DOMTitleNoteColumn = document.createElement('div');
-  var $entriesTitle = document.createElement('h2');
+  var $entriesTitle = document.createElement('h3');
   var $entriesPhotoURL = document.createElement('img');
   var $entriesNotes = document.createElement('p');
   var $pencilEditer = document.createElement('i');
@@ -158,6 +160,7 @@ function renderEntry(entry) {
             notes: $notes.value,
             nextEntryId: data.entries[i].nextEntryId
           };
+          $deleteButton.classList.remove('hidden');
           break;
         }
       }

@@ -56,13 +56,13 @@ a {
 /* NAVIGATION SECTION */
 
 header a {
-  transition: 100ms;
+  transition: 50ms;
 }
 
 header a:hover,
 header a:active {
   background-color: hsl(270, 60%, 40%);
-  box-shadow: -1px -1px hsl(270, 60%, 40%);
+  box-shadow: inset 0 0 10px 0 rgba(190, 190, 190, 0.605);
 }
 
 /* NEW ENTRY SECTION */

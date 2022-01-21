@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
 /* global data */
@@ -122,6 +123,7 @@ function bringUpDeleteModal(event) {
 }
 
 function cancelOrConfirm(event) {
+  // debugger;
   if (event.target === $cancelButton) {
     $deleteConfirmationModal.classList.add('hidden');
   }
@@ -130,6 +132,10 @@ function cancelOrConfirm(event) {
     for (var j = 0; j < data.entries.length; j++) {
       if (data.entries[j].nextEntryId === data.editing.nextEntryId) {
         data.entries.splice(j, 1);
+        data.nextEntryId -= 1;
+        for (var i = j; i < data.entries.length; i++) {
+          data.entries[i].nextEntryId -= 1;
+        }
         break;
       }
     }
